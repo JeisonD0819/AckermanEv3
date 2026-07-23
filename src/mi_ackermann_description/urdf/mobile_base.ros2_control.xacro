@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="carlikebot_ros2_control"
+               params="prefix hardware_type:=real">
+
+    <ros2_control name="CarLikeSystem" type="system">
+
+      <hardware>
+
+        <!-- =================== MOCK =================== -->
+        <xacro:if value="${hardware_type == 'mock'}">
+          <plugin>mock_components/GenericSystem</plugin>
+        </xacro:if>
+
+        <!-- =================== GAZEBO =================== -->
+        <xacro:if value="${hardware_type == 'gazebo'}">
+          <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </xacro:if>
+
+        <!-- =================== ROBOT REAL =================== -->
+        <xacro:if value="${hardware_type == 'real'}">
+          <plugin>mi_ackermann_hardware/AckermannHardware</plugin>
+          <param name="ip">192.168.0.118</param>
+          <param name="port">1300</param>
+          <param name="traction_type">large</param>
+        </xacro:if>
+
+      </hardware>
+
+      <!-- Dirección -->
+      <joint name="${prefix}virtual_front_wheel_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <!-- Tracción -->
+      <joint name="${prefix}virtual_rear_wheel_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="velocity"/>
+        <state_interface name="position"/>
+      </joint>
+
+    </ros2_control>
+
+  </xacro:macro>
+
+</robot>
