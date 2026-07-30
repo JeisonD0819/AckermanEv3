@@ -185,6 +185,8 @@ Uno de los principales desafíos durante el diseño fue garantizar la rigidez y 
 
 
 
+
+
 ## Autor
 
 **Jeison Nicolás Díaz Arciniegas**
