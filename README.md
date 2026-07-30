@@ -185,6 +185,26 @@ Para implementar la dirección Ackermann se utilizaron piezas de LEGO EV3 para c
 
 Uno de los principales desafíos durante el diseño fue garantizar la rigidez y estabilidad del chasis. Las primeras versiones del vehículo funcionaban correctamente cuando se evaluaban de forma aislada; sin embargo, se evidenció que la estructura no soportaría adecuadamente el peso de los demás componentes del sistema, como la batería, la Raspberry Pi, el LiDAR y los demás elementos electrónicos. Por esta razón, el diseño del chasis fue reforzado hasta obtener una estructura suficientemente resistente para soportar la carga del robot sin comprometer su funcionamiento.
 
+<p align="center">
+  <img src="images_v/2Mecanismo_Ack.jpeg" alt="Figura 2" width="400">
+</p>
+
+## Implementando ros2_controller
+
+Una vez implementado el chasis del vehículo, el siguiente paso consistió en establecer un puente de comunicación entre el LEGO EV3 y ROS 2. Para ello se empleó la infraestructura proporcionada por **ros2_control**, la cual facilita la integración de hardware con el ecosistema de ROS 2.
+
+Antes de configurar **ros2_control**, fue necesario definir el mecanismo de comunicación entre la Raspberry Pi 5 y el LEGO EV3. En este proyecto se optó por una conexión a través de una red local utilizando un socket TCP/IP bajo una arquitectura cliente-servidor. En esta arquitectura, el LEGO EV3 ejecuta un servidor encargado de recibir los comandos de velocidad enviados desde la Raspberry Pi y aplicarlos directamente a los motores.
+
+Por otra parte, en la Raspberry Pi se desarrolló un *driver* en C++ que actúa como cliente del servidor. Además de gestionar la comunicación, este *driver* realiza las conversiones necesarias entre las unidades utilizadas por ROS 2 y las empleadas por el EV3. En particular, convierte las velocidades angulares expresadas en rad/s al porcentaje de potencia requerido por los motores del EV3 y transforma las lecturas de los encoders en las unidades utilizadas por el controlador.
+
+Con la comunicación establecida, se implementó la interfaz de hardware (*Hardware Interface*) de **ros2_control**, la cual constituye el puente entre el hardware físico y los controladores de ROS 2. Esta interfaz define las variables de estado (*State Interfaces*) que serán leídas desde el robot, las variables de comando (*Command Interfaces*) que recibirán los controladores y el ciclo de vida del hardware, incluyendo los estados de configuración, activación, desactivación y apagado. La correcta definición de esta interfaz resulta fundamental, ya que permite que ROS 2 interactúe de forma transparente con el LEGO EV3.
+
+Finalmente, se configuró el controlador encargado de la locomoción del vehículo. La biblioteca **ros2_controllers** ofrece diferentes controladores para plataformas móviles; sin embargo, debido a que el robot posee una configuración tipo Ackermann, se optó por utilizar el **bicycle_steering_controller**. Este controlador implementa un modelo cinemático simplificado de un vehículo tipo automóvil (*car-like*), el cual resulta adecuado para este proyecto y permite controlar el movimiento del robot mediante comandos de velocidad lineal y velocidad angular. En el siguiente video se presenta la ejecución del vehículo utilizando este controlador.
+
+
+<p align="center">
+  <img src="video/ev3_ros2gift" alt="Demostración del robot" width="400">
+</p>
 
 
 
