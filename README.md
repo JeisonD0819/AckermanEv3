@@ -203,7 +203,7 @@ Finalmente, se configuró el controlador encargado de la locomoción del vehícu
 
 
 <p align="center">
-  <img src="video/ev3_ros2gift" alt="Demostración del robot" width="400">
+  <img src="video/ev3_ros2gift.gif" alt="Demostración del robot" width="400">
 </p>
 
 
