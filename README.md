@@ -174,18 +174,16 @@ rviz2
 
 ---
 
-## Estado del Proyecto
+## Implementando la direccion ackermann
 
-Actualmente el proyecto incluye:
+Para implementar la dirección Ackermann se utilizaron piezas de LEGO EV3 para construir el mecanismo de dirección. Es importante resaltar que existen diferentes configuraciones para implementar este tipo de mecanismo; sin embargo, se optó por la mostrada en la Figura 1 debido a que permite obtener una retroalimentación directa y precisa del ángulo de giro. En otras configuraciones, como el mecanismo de cremallera y piñón, es necesario considerar un factor de escala para relacionar el desplazamiento del actuador con el ángulo de dirección, lo que añade complejidad al sistema de control.
 
-- [x] Descripción del robot.
-- [x] Modelo Ackermann.
-- [x] Integración con ros2_control.
-- [x] Publicación de estados articulares.
-- [x] Publicación de odometría.
-- [ ] Integración completa de sensores.
-- [ ] Implementación de navegación autónoma.
-- [ ] Optimización del sistema de localización.
+![Figura 1](images_v\1Mecanismo_Ack.jpeg)
+
+
+Uno de los principales desafíos durante el diseño fue garantizar la rigidez y estabilidad del chasis. Las primeras versiones del vehículo funcionaban correctamente cuando se evaluaban de forma aislada; sin embargo, se evidenció que la estructura no soportaría adecuadamente el peso de los demás componentes del sistema, como la batería, la Raspberry Pi, el LiDAR y los demás elementos electrónicos. Por esta razón, el diseño del chasis fue reforzado hasta obtener una estructura suficientemente resistente para soportar la carga del robot sin comprometer su funcionamiento.
+
+
 
 ## Autor
 
