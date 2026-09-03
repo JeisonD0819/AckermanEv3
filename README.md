@@ -231,6 +231,10 @@ Teniendo las baterías cargadas y todos los paquetes inicializados, se comenzó 
 
 El proceso de mapeo se presenta en el siguiente video:
 
+<p align="center">
+  <img src="video/Mappingift.gif" alt="Demostración del robot" width="400">
+</p>
+
 [📹 Descargar o ver el video](video/Mapping.mp4)
 
 
