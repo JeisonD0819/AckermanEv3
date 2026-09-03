@@ -209,9 +209,29 @@ Finalmente, se configuró el controlador encargado de la locomoción del vehícu
 
 ## Implementacion SLAM
 
-Ahora que tenemos la cinematica inversa, lo que seguia era empezar a trabajar en la percepcion del vehiculo
+Teniendo nuestro control de movimiento implementado, era momento de trabajar en la percepción del vehículo, ya que, para poder navegar, es necesario tener conocimiento de nuestro entorno. Para ello, se planteó utilizar un LiDAR, que no solo nos permite obtener los datos necesarios para el mapeo, sino que, además, a partir de estos datos, podemos obtener la odometría del LiDAR. Posteriormente, esta fue fusionada con los datos de los encoders de las ruedas y los datos de una IMU, ya que la odometría es una fuente de información que puede presentar bastante ruido.
 
+Teniendo esto en cuenta, al final de todo el proceso, el robot quedó de la siguiente forma:
 
+<p align="center">
+  <img src="images_v/AckermanV.png" alt="Figura 1" width="400">
+</p>
+
+Teniendo el hardware conectado correctamente y funcionando, fue momento de implementar los paquetes del LiDAR para obtener la odometría, así como el paquete robot_localization para realizar el filtro de Kalman con las diferentes fuentes de información. Además, se configuró el archivo necesario para comenzar con el mapeo del siguiente escenario:
+
+<p align="center">
+  <img src="images_v/track.jpeg" alt="Figura 1" width="400">
+</p>
+
+Teniendo las baterías cargadas y todos los paquetes inicializados, se comenzó a realizar el mapeo para obtener el siguiente mapa. Es necesario resaltar que se realizó un posprocesamiento de los datos obtenidos para mejorar la calidad del mapa.
+
+<p align="center">
+  <img src="images_v/Map.png" alt="Figura 1" width="400">
+</p>
+
+El proceso de mapeo se presenta en el siguiente video:
+
+[📹 Descargar o ver el video](video/Mapping.mp4)
 
 
 ## Autor
