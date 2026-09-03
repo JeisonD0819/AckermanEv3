@@ -68,7 +68,6 @@ Finalmente, se integró el sistema con la pila de navegación de ROS 2 (**Nav2**
 ## Estructura del Proyecto
 
 ```
-workspace/
 ├── src/
 │   ├── mi_ackermann_description/
 │   │   ├── urdf/
@@ -205,6 +204,12 @@ Finalmente, se configuró el controlador encargado de la locomoción del vehícu
 <p align="center">
   <img src="video/ev3_ros2gift.gif" alt="Demostración del robot" width="400">
 </p>
+
+[📹 Descargar o ver el video](video/ev3_ros2.mp4)
+
+## Implementacion SLAM
+
+Ahora que tenemos la cinematica inversa, lo que seguia era empezar a trabajar en la percepcion del vehiculo
 
 
 
